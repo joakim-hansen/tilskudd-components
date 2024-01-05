@@ -1,0 +1,49 @@
+
+  
+{
+    "extends": ["airbnb-typescript-prettier"],
+    "rules": {
+        "quotes": ["warn", "single"],
+        "prettier/prettier": [
+            "warn",
+            {
+                "endOfLine": "auto"
+            }
+        ],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["warn"],
+        "react/require-default-props": "off",
+        "react-hooks/exhaustive-deps": "off",
+        "prefer-const": "warn",
+        "react/self-closing-comp": "warn",
+        "import/prefer-default-export": "off",
+        "react/react-in-jsx-scope": "off",
+        "import/no-cycle": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            { "devDependencies": true }
+        ],
+        "@typescript-eslint/explicit-function-return-type": [
+            "off",
+            {
+                "allowExpressions": true
+            }
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "react/no-array-index-key": "off",
+        "react/destructuring-assignment": "off",
+        "react/jsx-props-no-spreading": "off",
+        "no-nested-ternary": "off",
+        "no-alert": "off",
+        "spaced-comment": "warn",
+        "object-shorthand": "off",
+        "no-plusplus": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": ["src"]
+            }
+        }
+    }
+}
