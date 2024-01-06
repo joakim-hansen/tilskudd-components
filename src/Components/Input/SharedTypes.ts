@@ -24,6 +24,11 @@ type InputProps = {
     inputStyles?: SystemStyleObject;
 
     /**
+     * Custom styles for the container wrapping the input element.
+     */
+    inputContainerStyles?: SystemStyleObject;
+
+    /**
      * Custom styles for the label element.
      */
     labelStyles?: SystemStyleObject;

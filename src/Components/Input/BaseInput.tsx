@@ -37,6 +37,7 @@ export function BaseInput(props: BaseInputProps): ReactElement {
         labelStyles,
         captionStyles,
         errorStyles,
+        inputContainerStyles,
     } = props;
     return (
         <FormControl
@@ -57,7 +58,7 @@ export function BaseInput(props: BaseInputProps): ReactElement {
                     {label}
                 </FormLabel>
             )}
-            <Box sx={styles}>{children}</Box>
+            <Box sx={inputContainerStyles}>{children}</Box>
             {captionText && (
                 <FormHelperText
                     color='darkgrey'
