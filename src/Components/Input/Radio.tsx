@@ -39,7 +39,7 @@ interface RadioProps<T extends string | number> extends InputComponentProps {
      * const [selectedOption, setSelectedOption] = useState<number>();
      * @param value - The new value of the radio button group.
      */
-    onChange: (value: T | undefined) => void;
+    onChange: (value: T) => void;
 }
 
 export function Radio<T extends string | number>(
@@ -71,7 +71,9 @@ export function Radio<T extends string | number>(
         const originalValue = options.find(
             (option) => option.value.toString() === stringValue
         )?.value;
-        onChange(originalValue as T | undefined);
+        if (originalValue !== undefined) {
+            onChange(originalValue as T);
+        }
     };
 
     return (
