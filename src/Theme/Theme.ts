@@ -1,4 +1,3 @@
-import '@fontsource/lato';
 
 const colors = {
     darkblue: '#002855',
@@ -27,9 +26,4 @@ const colors = {
     },
 };
 
-const fonts = {
-    body: 'Lato',
-    heading: 'Lato',
-};
-
-export { colors, fonts };
+export { colors };

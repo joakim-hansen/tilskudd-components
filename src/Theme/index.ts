@@ -1,6 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 
-import { colors, fonts } from './Theme';
+import { colors } from './Theme';
 
 import {
     TextStyles as Text,
@@ -37,7 +37,6 @@ import {
 
 const overrides = {
     colors,
-    fonts,
     components: {
         Text,
         Heading,
