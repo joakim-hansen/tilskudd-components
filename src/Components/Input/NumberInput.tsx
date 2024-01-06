@@ -1,8 +1,7 @@
 import { Input } from '@chakra-ui/react';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { InputComponentProps } from './SharedTypes';
 import { BaseInput } from './BaseInput';
-
 /* 
     EXAMPLE USE: 
     function NumberExample(): ReactElement {
@@ -64,9 +63,9 @@ interface NumberInputProps extends InputComponentProps {
 
 /**
  * Handles changes to the input value. Processes the raw input and updates it based on provided constraints.
- * 
+ *
  * @param inputValue Value given in the native inputfield
- * @param onChange Callback given to the 
+ * @param onChange Callback given to the
  * @param isValueString Whether the value given is a string (as opposed to being undefined or a number)
  * @param maxValue The maximum allowed number value. If input value exeeds maxValue, value will be set to maxValue.
  */
@@ -93,12 +92,12 @@ function handleOnChange(
 }
 /**
  * Formats the displayed value of the inputfield
- * 
+ *
  * @param inputValue Given input value
  * @param isCurrency Whether the value is supposed to be currency. If true, formats displayed value as currency
  * @param currencySpacer Character(s) to use as comma separators if the value is currency. If not given, a single space is used.
  * @param formatFn Optionally given callback to allow for custom formatting of the displayed value
- * @returns A formatted string value, only used as a display value. 
+ * @returns A formatted string value, only used as a display value.
  */
 function formatValue(
     inputValue: number | string | undefined,
@@ -130,7 +129,7 @@ function formatValue(
  * NumberInput is a specialized input component for numerical values.
  * It extends the functionality of a standard input by allowing additional
  * numeric-specific properties like max value, currency formatting, and custom value formatting.
- * 
+ *
  * @param props - Properties of the NumberInput component.
  * @returns A React element representing a numerical input field.
  */
@@ -154,9 +153,7 @@ export function NumberInput(props: NumberInputProps): ReactElement {
     const isValueString = typeof value === 'string';
 
     return (
-        <BaseInput
-            {...props}
-        >
+        <BaseInput {...props}>
             <Input
                 isInvalid={!!invalidText || isInvalid}
                 placeholder={placeholder}
