@@ -1,4 +1,4 @@
-import { ReactElement, useMemo } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import {
     Accordion as ChakraAccordion,
     AccordionItem,

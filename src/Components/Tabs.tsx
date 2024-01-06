@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import {
     Tabs as ChakraTabs,
     TabList,
@@ -8,7 +8,6 @@ import {
     Center,
     SystemStyleObject,
 } from '@chakra-ui/react';
-
 
 /**
  * Properties for the Tabs component.
@@ -58,8 +57,8 @@ type Tab = {
 
 /**
  * Tabs component used to organize content into separate views where only one view can be visible at a time.
- * Each tab has its own content that is displayed when the tab is active. 
- *  
+ * Each tab has its own content that is displayed when the tab is active.
+ *
  * @param props - Properties of the Tabs component.
  * @returns A React element representing the Tabs component.
  */

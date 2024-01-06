@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import {
     Box,
     FormControl,
@@ -20,7 +20,7 @@ interface BaseInputProps extends InputProps {
  * BaseInput acts as a wrapper component for all input components.
  * It provides common layout and styling for input elements.
  * This component is not intended to be used directly in applications.
- * 
+ *
  * @param props - Properties of the BaseInput component, extending InputProps.
  * @returns A React element representing the base input structure.
  */
@@ -36,7 +36,7 @@ export function BaseInput(props: BaseInputProps): ReactElement {
         styles,
         labelStyles,
         captionStyles,
-        errorStyles
+        errorStyles,
     } = props;
     return (
         <FormControl
@@ -57,9 +57,7 @@ export function BaseInput(props: BaseInputProps): ReactElement {
                     {label}
                 </FormLabel>
             )}
-            <Box sx={styles}>
-                {children}
-            </Box>
+            <Box sx={styles}>{children}</Box>
             {captionText && (
                 <FormHelperText
                     color='darkgrey'
@@ -70,11 +68,7 @@ export function BaseInput(props: BaseInputProps): ReactElement {
                 </FormHelperText>
             )}
             {invalidText && (
-                <FormErrorMessage
-                    color='red'
-                    fontSize='md'
-                    sx={errorStyles}
-                >
+                <FormErrorMessage color='red' fontSize='md' sx={errorStyles}>
                     {invalidText}
                 </FormErrorMessage>
             )}
