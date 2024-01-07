@@ -41,6 +41,7 @@ function App() {
     const radioOptions = [
         { value: 'first', label: 'Radio Option One' },
         { value: 'second', label: 'Radio Option Two' },
+        { value: 'disabled', label: 'Disabled Radio Option', isDisabled: true },
     ];
 
     const inputFieldStyles = { width: '25rem' };

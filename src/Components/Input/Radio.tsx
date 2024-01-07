@@ -6,7 +6,7 @@ import {
     RadioGroup,
     Stack,
 } from '@chakra-ui/react';
-import { InputComponentProps, SelectOption } from './SharedTypes';
+import { InputComponentProps, MultiChoiceOption } from './SharedTypes';
 import { BaseInput } from './BaseInput';
 
 /**
@@ -23,7 +23,7 @@ interface RadioProps<T extends string | number> extends InputComponentProps {
     /**
      * An array of options for the radio buttons, where each option has a label and a value.
      */
-    options: SelectOption<T>[];
+    options: MultiChoiceOption<T>[];
 
     /**
      * The currently selected value from the options. Can be a string, number, or undefined.
@@ -85,22 +85,14 @@ export function Radio<T extends string | number>(
             >
                 <Stack direction={direction}>
                     {stringOptions.map((option) => (
-                        <HStack position='relative' key={option.value}>
-                            <ChakraRadio
-                                isInvalid={!!invalidText || isInvalid}
-                                value={option.value}
-                                top={1}
-                                position='absolute'
-                                id={`${label}-radio-${option.value}`}
-                            />
-                            <FormLabel
-                                padding='0 0 0 22px'
-                                margin='0'
-                                htmlFor={`${label}-radio-${option.value}`}
-                            >
-                                {option.label}
-                            </FormLabel>
-                        </HStack>
+                        <ChakraRadio
+                            isInvalid={!!invalidText || isInvalid}
+                            value={option.value}
+                            id={`${label}-radio-${option.value}`}
+                            isDisabled={option.isDisabled}
+                        >
+                            {option.label}
+                        </ChakraRadio>
                     ))}
                 </Stack>
             </RadioGroup>
