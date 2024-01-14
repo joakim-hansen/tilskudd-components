@@ -25,6 +25,7 @@ export function TextInput(props: TextInputProps): ReactElement {
         autoFocus,
         isInvalid,
         inputStyles,
+        ariaLabel,
     } = props;
     return (
         <BaseInput {...props}>
@@ -36,6 +37,7 @@ export function TextInput(props: TextInputProps): ReactElement {
                 value={value}
                 autoFocus={autoFocus}
                 sx={inputStyles}
+                aria-label={ariaLabel}
             />
         </BaseInput>
     );

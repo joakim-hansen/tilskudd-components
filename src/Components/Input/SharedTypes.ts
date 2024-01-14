@@ -47,6 +47,11 @@ type InputProps = {
      * Custom styles to apply to the entire input component.
      */
     styles?: SystemStyleObject;
+
+    /**
+     * Aria label for screen readers
+     */
+    ariaLabel?: string;
 };
 
 interface InputComponentProps extends InputProps {

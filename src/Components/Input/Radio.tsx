@@ -54,6 +54,7 @@ export function Radio<T extends string | number>(
         invalidText,
         isDisabled,
         isInvalid,
+        ariaLabel,
     } = props;
 
     // Convert option values to strings for internal use
@@ -79,6 +80,7 @@ export function Radio<T extends string | number>(
     return (
         <BaseInput {...props} isGroup>
             <RadioGroup
+                aria-label={ariaLabel}
                 isDisabled={isDisabled}
                 onChange={(e) => handleChange(e)}
                 value={value?.toString() ?? ''}

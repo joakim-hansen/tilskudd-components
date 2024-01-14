@@ -148,6 +148,7 @@ export function NumberInput(props: NumberInputProps): ReactElement {
         formatFn,
         isInvalid,
         inputStyles,
+        ariaLabel,
     } = props;
 
     const isValueString = typeof value === 'string';
@@ -175,6 +176,7 @@ export function NumberInput(props: NumberInputProps): ReactElement {
                 maxLength={maxValueLength}
                 autoFocus={autoFocus}
                 sx={inputStyles}
+                aria-label={ariaLabel}
             />
         </BaseInput>
     );

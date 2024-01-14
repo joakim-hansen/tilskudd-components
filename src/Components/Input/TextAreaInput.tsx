@@ -32,6 +32,7 @@ export function TextAreaInput(props: TextInputProps): ReactElement {
         autoFocus,
         isInvalid,
         inputStyles,
+        ariaLabel,
     } = props;
     return (
         <BaseInput {...props}>
@@ -45,6 +46,7 @@ export function TextAreaInput(props: TextInputProps): ReactElement {
                 sx={inputStyles}
                 errorBorderColor='transparent'
                 focusBorderColor='transparent'
+                aria-label={ariaLabel}
             />
         </BaseInput>
     );
