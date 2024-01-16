@@ -89,7 +89,7 @@ interface TextInputProps extends InputComponentProps {
     characterLimit?: number;
 }
 
-type MultiChoiceOption<T> = {
+type MultiChoiceOption<T extends string | number> = {
     label: string;
     value: T;
     isDisabled?: boolean;
