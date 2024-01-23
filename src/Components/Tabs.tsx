@@ -38,6 +38,11 @@ type TabProps = {
      * Custom styles to apply to the tab list.
      */
     tabListStyles?: SystemStyleObject;
+
+    /**
+     * Custom styles to apply to the tab panel.
+     */
+    tabPanelStyles?: SystemStyleObject;
 };
 
 /**
@@ -63,7 +68,14 @@ type Tab = {
  * @returns A React element representing the Tabs component.
  */
 export function Tabs(props: TabProps): ReactElement {
-    const { tabs, centerTabs, defaultIndex, onChange, tabListStyles } = props;
+    const {
+        tabs,
+        centerTabs,
+        defaultIndex,
+        onChange,
+        tabListStyles,
+        tabPanelStyles,
+    } = props;
 
     const [activeTab, setActiveTab] = useState(defaultIndex || 0);
 
@@ -96,7 +108,9 @@ export function Tabs(props: TabProps): ReactElement {
             <TabPanels>
                 {tabs.map((tab, index) => {
                     return (
-                        <TabPanel key={`tp${index}`}>{tab.children}</TabPanel>
+                        <TabPanel key={`tp${index}`} sx={tabPanelStyles}>
+                            {tab.children}
+                        </TabPanel>
                     );
                 })}
             </TabPanels>
