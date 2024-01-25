@@ -16,6 +16,7 @@ import {
 
 /**
  * Properties for the Alert component.
+ * The Alert will try to get styles from the 'Alert" styleconfig.
  */
 type AlertProps = {
     /**

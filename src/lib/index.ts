@@ -1,3 +1,11 @@
-import { NumberInput, TextAreaInput, TextInput, Radio, Tabs, Accordion } from "../Components";
+import {
+    NumberInput,
+    TextAreaInput,
+    TextInput,
+    Radio,
+    Tabs,
+    Accordion,
+    Alert,
+} from '../Components';
 
-export { NumberInput, TextAreaInput, TextInput, Radio, Tabs, Accordion }
+export { NumberInput, TextAreaInput, TextInput, Radio, Tabs, Accordion, Alert };
