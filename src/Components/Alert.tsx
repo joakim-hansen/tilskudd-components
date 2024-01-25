@@ -8,11 +8,11 @@ import {
     Spacer,
     Stack,
     Link,
-    HStack,
     Icon,
     IconProps,
+    useStyleConfig,
+    SystemStyleObject,
 } from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 /**
  * Properties for the Alert component.
@@ -40,10 +40,10 @@ type AlertProps = {
     onClose?: () => void;
 
     /**
-     * The text of a hyperlink that can be included in the alert.
-     * If not provided along with a `linkHref`, no link will be shown.
+     * Object containing the text and href of a hyperlink that can be included in the alert.
+     * Optionally contains isExternal; whether or not the link is external
      */
-    linkText?: string;
+    link?: { text: string; href: string; isExternal?: boolean };
 
     /**
      * The URL that the hyperlink points to.
@@ -58,10 +58,9 @@ type AlertProps = {
     linkIsExternal?: boolean;
 
     /**
-     * The width of the alert component, specified as a CSS value (e.g., '100%', '400px').
-     * If not provided, the width will be determined by the container or default styles.
+     * Custom styles for the Alert
      */
-    width?: string;
+    styles?: SystemStyleObject;
 
     /**
      * The content to be rendered inside the alert, typically text or React components.
@@ -117,23 +116,16 @@ function ErrorIcon(props: IconProps) {
 @see — WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/alert/
  */
 function Alert(props: AlertProps): ReactElement {
-    const {
-        status,
-        description,
-        onClose,
-        linkText,
-        linkHref,
-        linkIsExternal,
-        width,
-        children,
-        variant,
-    } = props;
+    const { status, description, onClose, link, children, variant, styles } =
+        props;
+
+    const alertStyles = useStyleConfig('Alert');
 
     return (
         <ChakraAlert
             status={status}
-            width={width || '20rem'}
             variant={variant || status}
+            sx={styles ? { ...alertStyles, ...styles } : alertStyles}
         >
             <AlertIcon
                 as={
@@ -152,20 +144,10 @@ function Alert(props: AlertProps): ReactElement {
                     {description}
                     {children}
                 </AlertDescription>
-                {linkText && linkHref && (
-                    <HStack>
-                        <Link
-                            href={linkHref}
-                            color='blue'
-                            textDecoration='underline'
-                            isExternal={linkIsExternal}
-                        >
-                            {linkText}{' '}
-                            {linkIsExternal && (
-                                <ExternalLinkIcon mx='0.25rem' />
-                            )}
-                        </Link>
-                    </HStack>
+                {link && (
+                    <Link href={link.href} isExternal={link.isExternal}>
+                        {link.text}
+                    </Link>
                 )}
             </Stack>
             <Spacer />

@@ -5,6 +5,7 @@ const Alert = {
         description: { color: 'darkgrey' },
         icon: { position: 'absolute', left: '12px', top: '12px' },
         spinner: {},
+        width: '400px',
     },
     variants: {
         warning: {

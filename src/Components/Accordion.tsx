@@ -8,6 +8,7 @@ import {
     Badge,
     Stack,
     Heading,
+    ExpandedIndex,
 } from '@chakra-ui/react';
 import { ArrowUpIcon, ArrowDownIcon } from '@chakra-ui/icons';
 
@@ -15,10 +16,16 @@ type AccordionProps = {
     allowMultiple?: boolean;
     isAllDefaultOpen?: boolean;
     items: AccordionItem[];
+    defaultIndex?: ExpandedIndex;
+    onChange?: (value: ExpandedIndex) => void;
+    index?: ExpandedIndex;
+    width?: string;
+    isSubAccordion?: boolean;
+    panelBackgroundColor?: string;
 };
 
 type AccordionItem = {
-    title: string;
+    title: string | JSX.Element[] | JSX.Element;
     content: JSX.Element[] | JSX.Element;
 };
 
@@ -48,39 +55,76 @@ type AccordionItem = {
 */
 
 export function Accordion(props: AccordionProps): ReactElement {
-    const { items, allowMultiple, isAllDefaultOpen } = props;
-
-    const indexesDefaultOpen: number[] = useMemo(() => {
-        if (isAllDefaultOpen) {
-            return items.map((_, index) => index);
-        }
-        return [];
-    }, [items, isAllDefaultOpen]);
-
+    const {
+        items,
+        allowMultiple,
+        isAllDefaultOpen,
+        defaultIndex,
+        onChange,
+        index,
+        width,
+        isSubAccordion,
+        panelBackgroundColor,
+    } = props;
     return (
         <ChakraAccordion
+            style={{ overflow: 'visible' }}
             allowMultiple={allowMultiple || isAllDefaultOpen}
-            defaultIndex={indexesDefaultOpen}
+            defaultIndex={defaultIndex !== undefined ? defaultIndex : 0}
+            backgroundColor='white'
             allowToggle
+            width={width || '100%'}
+            onChange={
+                onChange
+                    ? (e) => {
+                          onChange(e);
+                      }
+                    : undefined
+            }
+            index={index !== undefined ? index : undefined}
         >
             {items.map((accordionItem, index) => {
                 return (
-                    <AccordionItem key={`aci${index}`}>
+                    <AccordionItem
+                        key={`aci${index}`}
+                        backgroundColor={panelBackgroundColor || ''}
+                    >
                         {({ isExpanded }) => (
                             <>
-                                <Heading as='h2'>
+                                <h2>
                                     <AccordionButton
-                                        height='62px'
+                                        minHeight={
+                                            isSubAccordion ? '50px' : '62'
+                                        }
                                         _expanded={{ background: 'lightblue' }}
+                                        backgroundColor={'white'}
                                     >
                                         <Box flex='1' textAlign='left'>
                                             <Stack
                                                 spacing='0px'
                                                 direction='column'
                                             >
-                                                <Heading size='md' color='blue'>
-                                                    {accordionItem.title}
-                                                </Heading>
+                                                {typeof accordionItem.title ===
+                                                'string' ? (
+                                                    <Heading
+                                                        size='md'
+                                                        color='blue'
+                                                        fontWeight={
+                                                            isSubAccordion
+                                                                ? 'normal'
+                                                                : 'bold'
+                                                        }
+                                                        fontSize={
+                                                            isSubAccordion
+                                                                ? '16px'
+                                                                : '20px'
+                                                        }
+                                                    >
+                                                        {accordionItem.title}
+                                                    </Heading>
+                                                ) : (
+                                                    accordionItem.title
+                                                )}
                                             </Stack>
                                         </Box>
                                         {isExpanded ? (
@@ -95,8 +139,8 @@ export function Accordion(props: AccordionProps): ReactElement {
                                             />
                                         )}
                                     </AccordionButton>
-                                </Heading>
-                                <AccordionPanel pb={4}>
+                                </h2>
+                                <AccordionPanel mt={1} pb={4}>
                                     {accordionItem.content}
                                 </AccordionPanel>
                             </>

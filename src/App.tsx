@@ -1,4 +1,4 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Heading, Text } from '@chakra-ui/react';
 import {
     Alert,
     Accordion,
@@ -102,7 +102,35 @@ function App() {
             children: (
                 <div style={{ width: '80vw' }}>
                     <Divider title='Alert' />
-                    <Alert status='error'>Zoopi doopy</Alert>
+                    <Alert
+                        status='error'
+                        link={{
+                            text: 'link text goes here',
+                            href: 'https//google.com',
+                        }}
+                        onClose={() => console.log('I am closing now')}
+                    >
+                        Zoopi doopy
+                    </Alert>
+                    <Alert status='warning'>
+                        <Heading size='md' mb='16px'>
+                            Søker er bedt om å betale tilbake
+                        </Heading>
+                        <Heading size='sm' mb='8px'>
+                            Beskjed til søker
+                        </Heading>
+                        <Text mb='12px'>Bla bla bla blabbedi blablabla</Text>
+
+                        <>
+                            <Heading size='sm' mb='8px'>
+                                Intern kommentar
+                            </Heading>
+                            <Text mb='12px'>
+                                requestRefundInternalComment bnlabeeb
+                                alikbjnaert io arev aeiorn
+                            </Text>
+                        </>
+                    </Alert>
                     <Divider title='Accordion' />
                     <Accordion items={accordionItems} />
                 </div>
