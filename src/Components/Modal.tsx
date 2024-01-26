@@ -5,7 +5,6 @@ import {
     ModalContent,
     ModalHeader,
     ModalBody,
-    ModalCloseButton,
     Box,
     Button,
     Flex,
@@ -17,29 +16,83 @@ import {
 } from '@chakra-ui/react';
 
 type ModalProps = {
+    /**
+     * Indicates whether the modal is open or closed.
+     */
     isModalOpen: boolean;
+
+    /**
+     * An optional icon to display in the modal header. Can be one of the predefined string values or a custom JSX element.
+     */
     icon?: 'check' | 'exclamation' | 'edit' | JSX.Element;
-    title?: string | JSX.Element[];
+
+    /**
+     * The title content of the modal. Can be a string or custom JSX. Rendered as `Heading` if given as a string.
+     */
+    title?: string | JSX.Element | JSX.Element[];
+
+    /**
+     * The subtitle content of the modal. Can be a string or custom JSX. Rendered as `Heading` if given as a string.
+     */
     subtitle?: string | JSX.Element | JSX.Element[];
+
+    /**
+     * Optional content to be displayed in the modal body. Can be a single JSX element or an array of JSX elements.
+     */
     children?: JSX.Element[] | JSX.Element;
+
+    /**
+     * Configuration for primary and secondary buttons in the modal. If given, renders a default button setup.
+     */
     buttons?: ModalButtons;
-    hasCloseButton?: boolean;
+
+    /**
+     * Function to call when the modal needs to be closed.
+     */
     onClose: () => void;
+
+    /**
+     * An optional error message to display in the modal. Will only work when the modal is also given a `buttons` object.
+     */
     errorMessage?: string;
-    /** @deprecated Don't use this prop. Use styles object instead */
-    width?: string;
+
+    /**
+     * Optional Chakra UI style props to customize the modal.
+     */
     styles?: SystemStyleObject;
 };
 
 type ModalButtons = {
+    /**
+     * The primary button's configuration.
+     */
     primary: ModalButton;
+
+    /**
+     * An optional secondary button's configuration. If not given an `onClick`, will call the `onClose` passed to the modal.
+     */
     secondary?: ModalButton;
+
+    /**
+     * The alignment of the buttons within the modal. Can be either 'right' or 'left'.
+     */
     alignment: 'right' | 'left';
 };
 
 type ModalButton = {
+    /**
+     * The text label displayed on the button.
+     */
     label: string;
+
+    /**
+     * The variant of the button. Must be default Chakra value or defined in theme.
+     */
     variant: string;
+
+    /**
+     * An optional click handler for the button.
+     */
     onClick?: () => void;
 };
 
@@ -50,28 +103,23 @@ type ModalButton = {
         function submitFunction(): void {
             alert('You have pressed the primary button succesfully');
         }
-        const primary = {
-            label: 'Primary button',
-            variant: 'primary',
-            onClick: submitFunction,
-        };
-
-        const secondary = {
-            label: 'Secondary',
-            variant: 'secondary,
-        };
-
-        const buttons = {
-            primary,
-            secondary,
-            alignment: 'left',
-        };
 
         return (
             <div>
                 <Button onClick={() => setmodalOpen(true)}>Open the modal!</Button>
                 <Modal
-                    buttons={buttons}
+                    buttons={{
+            primary: {
+            label: 'Primary button',
+            variant: 'primary',
+            onClick: submitFunction,
+        },
+            secondary: {
+            label: 'Secondary',
+            variant: 'secondary,
+        },
+            alignment: 'left',
+        }}
                     isModalOpen={modalOpen}
                     title='The modal may have a title'
                     onClose={() => setmodalOpen(false)}
@@ -117,6 +165,18 @@ function EditIcon(props: IconProps) {
     );
 }
 
+/**
+ * Renders buttons inside the modal.
+ *
+ * This component handles the rendering of primary and secondary buttons in the modal,
+ * including their alignment and actions. It also optionally displays an error message.
+ *
+ * @param {object} props - The properties for the Buttons component.
+ * @param {ModalButtons} props.buttons - The configuration for the buttons to be rendered.
+ * @param {() => void} props.onClose - The function to call when the modal needs to be closed.
+ * @param {string} [props.errorMessage] - An optional error message to be displayed in the modal.
+ * @returns {ReactElement} - A React element representing the set of buttons in the modal.
+ */
 function Buttons(props: {
     buttons: ModalButtons;
     onClose: () => void;
@@ -129,7 +189,10 @@ function Buttons(props: {
             {alignment === 'right' && (
                 <Flex justify='end'>
                     {secondary && (
-                        <Button variant={secondary.variant} onClick={onClose}>
+                        <Button
+                            variant={secondary.variant}
+                            onClick={secondary.onClick ?? onClose}
+                        >
                             {secondary.label}
                         </Button>
                     )}
@@ -148,7 +211,10 @@ function Buttons(props: {
                         {primary.label}
                     </Button>
                     {secondary && (
-                        <Button variant={secondary.variant} onClick={onClose}>
+                        <Button
+                            variant={secondary.variant}
+                            onClick={secondary.onClick ?? onClose}
+                        >
                             {secondary.label}
                         </Button>
                     )}
@@ -173,6 +239,15 @@ function Buttons(props: {
     );
 }
 
+/**
+ * Represents a modal dialog component.
+ *
+ * This component displays a modal dialog with various customizable properties like
+ * title, subtitle, icons, and buttons. It can be used to present information to the user or to get user inputs.
+ *
+ * @param {ModalProps} props - The properties passed to the Modal component.
+ * @returns {ReactElement} - A React element representing the modal dialog.
+ */
 export function Modal(props: ModalProps): ReactElement {
     const {
         isModalOpen,
@@ -182,16 +257,14 @@ export function Modal(props: ModalProps): ReactElement {
         children,
         buttons,
         onClose,
-        hasCloseButton,
         errorMessage,
-        width,
         styles,
     } = props;
 
     return (
         <ChakraModal isOpen={isModalOpen} onClose={onClose} isCentered>
             <ModalOverlay />
-            <ModalContent maxW={width} sx={styles}>
+            <ModalContent sx={styles}>
                 <ModalHeader>
                     <Flex width='100%' direction='row'>
                         {typeof icon === 'string' ? (
@@ -232,7 +305,6 @@ export function Modal(props: ModalProps): ReactElement {
                         </Flex>
                     </Flex>
                 </ModalHeader>
-                {hasCloseButton && <ModalCloseButton />}
                 <ModalBody>{children}</ModalBody>
                 {buttons && (
                     <Buttons

@@ -47,18 +47,6 @@ type AlertProps = {
     link?: { text: string; href: string; isExternal?: boolean };
 
     /**
-     * The URL that the hyperlink points to.
-     If not provided along with a `linkText`, no link will be shown.
-     */
-    linkHref?: string;
-
-    /**
-     * Indicates whether the link should open in a new tab/window.
-     * Defaults to 'false' if not provided.
-     */
-    linkIsExternal?: boolean;
-
-    /**
      * Custom styles for the Alert
      */
     styles?: SystemStyleObject;
