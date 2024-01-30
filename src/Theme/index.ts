@@ -33,6 +33,7 @@ import {
     Tr,
     THrow,
     TFrow,
+    Accordion,
 } from './Components';
 
 const overrides = {
@@ -68,6 +69,7 @@ const overrides = {
         Tr,
         THrow,
         TFrow,
+        Accordion,
     },
 };
 

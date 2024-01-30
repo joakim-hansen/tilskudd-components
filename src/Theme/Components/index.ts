@@ -21,3 +21,4 @@ export * from './Icon';
 export * from './Table';
 export * from './Select';
 export * from './ProgressStyles';
+export * from './Accordion';

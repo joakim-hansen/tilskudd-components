@@ -5,27 +5,73 @@ import {
     AccordionButton,
     AccordionPanel,
     Box,
-    Badge,
-    Stack,
     Heading,
-    ExpandedIndex,
+    SystemStyleObject,
 } from '@chakra-ui/react';
 import { ArrowUpIcon, ArrowDownIcon } from '@chakra-ui/icons';
 
 type AccordionProps = {
+    /**
+     * If true, multiple accordion items can be expanded at the same time.
+     */
     allowMultiple?: boolean;
+
+    /**
+     * If true, all accordion items are expanded by default.
+     */
     isAllDefaultOpen?: boolean;
+
+    /**
+     * An array of accordion items, each containing a title and content.
+     */
     items: AccordionItem[];
-    defaultIndex?: ExpandedIndex;
-    onChange?: (value: ExpandedIndex) => void;
-    index?: ExpandedIndex;
-    width?: string;
-    isSubAccordion?: boolean;
-    panelBackgroundColor?: string;
+
+    /**
+     * The index of the accordion item that is expanded by default.
+     */
+    defaultIndex?: number;
+
+    /**
+     * Callback function called when an accordion item is expanded or collapsed.
+     * The index of the expanded/collapsed item is passed as an argument.
+     */
+    onChange?: (value: number) => void;
+
+    /**
+     * Controls the expanded index of the accordion. This makes the component controlled.
+     */
+    index?: number;
+
+    /**
+     * Custom styles for the accordion component.
+     */
+    styles?: SystemStyleObject;
+
+    /**
+     * Custom styles for the accordion panel.
+     */
+    panelStyles?: SystemStyleObject;
+
+    /**
+     * Custom styles for the accordion button.
+     */
+    buttonStyles?: SystemStyleObject;
+
+    /**
+     * Custom styles for the accordion title.
+     */
+    titleStyles?: SystemStyleObject;
 };
 
 type AccordionItem = {
+    /**
+     * The title of the accordion item. Can be a string, JSX element, or an array of JSX elements.
+     */
     title: string | JSX.Element[] | JSX.Element;
+
+    /**
+     * The content of the accordion item. Can be a single JSX element or an array of JSX elements.
+     */
     content: JSX.Element[] | JSX.Element;
 };
 
@@ -62,70 +108,47 @@ export function Accordion(props: AccordionProps): ReactElement {
         defaultIndex,
         onChange,
         index,
-        width,
-        isSubAccordion,
-        panelBackgroundColor,
+        buttonStyles,
+        panelStyles,
+        styles,
+        titleStyles,
     } = props;
+
     return (
         <ChakraAccordion
-            style={{ overflow: 'visible' }}
             allowMultiple={allowMultiple || isAllDefaultOpen}
             defaultIndex={defaultIndex !== undefined ? defaultIndex : 0}
-            backgroundColor='white'
             allowToggle
-            width={width || '100%'}
             onChange={
                 onChange
-                    ? (e) => {
+                    ? (e: number) => {
                           onChange(e);
                       }
                     : undefined
             }
             index={index !== undefined ? index : undefined}
+            sx={styles}
         >
             {items.map((accordionItem, index) => {
                 return (
-                    <AccordionItem
-                        key={`aci${index}`}
-                        backgroundColor={panelBackgroundColor || ''}
-                    >
+                    <AccordionItem key={`aci${index}`}>
                         {({ isExpanded }) => (
                             <>
                                 <h2>
-                                    <AccordionButton
-                                        minHeight={
-                                            isSubAccordion ? '50px' : '62'
-                                        }
-                                        _expanded={{ background: 'lightblue' }}
-                                        backgroundColor={'white'}
-                                    >
+                                    <AccordionButton sx={buttonStyles}>
                                         <Box flex='1' textAlign='left'>
-                                            <Stack
-                                                spacing='0px'
-                                                direction='column'
-                                            >
-                                                {typeof accordionItem.title ===
-                                                'string' ? (
-                                                    <Heading
-                                                        size='md'
-                                                        color='blue'
-                                                        fontWeight={
-                                                            isSubAccordion
-                                                                ? 'normal'
-                                                                : 'bold'
-                                                        }
-                                                        fontSize={
-                                                            isSubAccordion
-                                                                ? '16px'
-                                                                : '20px'
-                                                        }
-                                                    >
-                                                        {accordionItem.title}
-                                                    </Heading>
-                                                ) : (
-                                                    accordionItem.title
-                                                )}
-                                            </Stack>
+                                            {typeof accordionItem.title ===
+                                            'string' ? (
+                                                <Heading
+                                                    size='md'
+                                                    color='blue'
+                                                    sx={titleStyles}
+                                                >
+                                                    {accordionItem.title}
+                                                </Heading>
+                                            ) : (
+                                                accordionItem.title
+                                            )}
                                         </Box>
                                         {isExpanded ? (
                                             <ArrowUpIcon
@@ -140,7 +163,7 @@ export function Accordion(props: AccordionProps): ReactElement {
                                         )}
                                     </AccordionButton>
                                 </h2>
-                                <AccordionPanel mt={1} pb={4}>
+                                <AccordionPanel sx={panelStyles}>
                                     {accordionItem.content}
                                 </AccordionPanel>
                             </>

@@ -132,7 +132,7 @@ function App() {
                         </>
                     </Alert>
                     <Divider title='Accordion' />
-                    <Accordion items={accordionItems} />
+                    <Accordion items={accordionItems} allowMultiple />
                 </div>
             ),
         },
@@ -160,6 +160,10 @@ function App() {
         <ChakraProvider theme={styles}>
             <div style={{ marginLeft: '2rem', width: '100vw' }}>
                 <Tabs tabs={tabItems} />
+                <br />
+                <br />
+                <br />
+                <br />
             </div>
         </ChakraProvider>
     );
