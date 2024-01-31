@@ -1,7 +1,6 @@
 export * from './TextStyles';
 export * from './HeadingStyles';
 export * from './ButtonStyles';
-export * from './CardStyles';
 export * from './TabStyles';
 export * from './BreadcrumbStyles';
 export * from './CheckboxStyles';
@@ -22,3 +21,4 @@ export * from './Table';
 export * from './Select';
 export * from './ProgressStyles';
 export * from './Accordion';
+export * from './Card';

@@ -7,6 +7,7 @@ import {
     NumberInput,
     Tabs,
     Radio,
+    Card,
 } from 'Components';
 import { styles } from 'Theme';
 import { useState } from 'react';
@@ -133,6 +134,9 @@ function App() {
                     </Alert>
                     <Divider title='Accordion' />
                     <Accordion items={accordionItems} allowMultiple />
+
+                    <Divider title='Card' />
+                    <Card title='Card title' />
                 </div>
             ),
         },

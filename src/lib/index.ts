@@ -7,6 +7,7 @@ import {
     Accordion,
     Alert,
     Modal,
+    Card,
 } from '../Components';
 
 export {
@@ -18,4 +19,5 @@ export {
     Accordion,
     Alert,
     Modal,
+    Card,
 };

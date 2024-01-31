@@ -6,7 +6,7 @@ import {
     TextStyles as Text,
     HeadingStyles as Heading,
     ButtonStyles as Button,
-    CardStyles as Card,
+    Card,
     TabStyles as Tabs,
     BreadcrumbStyles as Breadcrumb,
     CheckboxStyles as Checkbox,
