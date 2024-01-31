@@ -84,7 +84,11 @@ function Card(props: CardProps): ReactElement {
             <Flex direction='column' justify='space-between'>
                 <Flex width='100%' direction='row' align='center'>
                     {titleIcon}
-                    <Heading size='md' marginLeft='0.5rem' sx={titleStyles}>
+                    <Heading
+                        size='md'
+                        marginLeft={titleIcon ? '0.5rem' : undefined}
+                        sx={titleStyles}
+                    >
                         {title}
                     </Heading>
                 </Flex>
