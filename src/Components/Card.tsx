@@ -40,6 +40,11 @@ type CardProps = {
     titleStyles?: SystemStyleObject;
 
     /**
+     * Custom styles for the content Text element within the card. Is only applied if `content` is a string.
+     */
+    contentStyles?: SystemStyleObject;
+
+    /**
      * An optional click handler for the card.
      */
     onClick?: () => void;
@@ -66,6 +71,7 @@ function Card(props: CardProps): ReactElement {
         onClick,
         ariaLabel,
         variant,
+        contentStyles,
     } = props;
 
     const cardStyles = useStyleConfig('Card', { variant: variant });
@@ -100,7 +106,9 @@ function Card(props: CardProps): ReactElement {
                         justify='space-between'
                         margin='0.5rem 0.25rem 0 0'
                     >
-                        <Text textAlign='left'>{content}</Text>
+                        <Text textAlign='left' sx={contentStyles}>
+                            {content}
+                        </Text>
                         {actionIcon && actionIcon}
                     </Flex>
                 ) : (
