@@ -9,6 +9,7 @@ import {
     Radio,
     Card,
     Checkbox,
+    CheckboxToggle,
 } from 'Components';
 import { styles } from 'Theme';
 import { useState } from 'react';
@@ -57,6 +58,8 @@ function App() {
             isDisabled: true,
         },
     ];
+
+    const [isToggled, setIsToggled] = useState(false);
 
     const inputFieldStyles = { width: '25rem' };
 
@@ -186,6 +189,10 @@ function App() {
                             }
                         })}
                     </div>
+                    <Divider title='CheckboxToggle' />
+                    <CheckboxToggle value={isToggled} onChange={setIsToggled} />
+                    <div>Value of CheckboxToggle:</div>
+                    <div>{isToggled.toString()}</div>
                 </div>
             ),
         },

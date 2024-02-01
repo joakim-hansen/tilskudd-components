@@ -1,7 +1,7 @@
 {
   "name": "@egde/tilskudd-components",
   "private": false,
-  "version": "0.0.19",
+  "version": "0.0.21",
   "type": "module",
   "scripts": {
     "dev": "vite",

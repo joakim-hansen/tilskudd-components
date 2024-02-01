@@ -9,6 +9,7 @@ import {
     Modal,
     Card,
     Checkbox,
+    CheckboxToggle,
 } from '../Components';
 
 export {
@@ -22,4 +23,5 @@ export {
     Modal,
     Card,
     Checkbox,
+    CheckboxToggle,
 };
