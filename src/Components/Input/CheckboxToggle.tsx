@@ -6,17 +6,20 @@ import { InputComponentProps } from './SharedTypes';
 interface CheckboxToggleProps extends InputComponentProps {
     value: boolean;
     onChange: (value: boolean) => void;
+    valueLabel?: string;
 }
 
 export function CheckboxToggle(props: CheckboxToggleProps): ReactElement {
-    const { value, onChange, ...otherProps } = props;
+    const { value, onChange, valueLabel, ...otherProps } = props;
 
     return (
         <BaseInput {...otherProps}>
             <ChakraCheckbox
                 isChecked={value}
                 onChange={(e) => onChange(e.target.checked)}
-            />
+            >
+                {valueLabel}
+            </ChakraCheckbox>
         </BaseInput>
     );
 }

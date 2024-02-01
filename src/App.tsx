@@ -190,7 +190,11 @@ function App() {
                         })}
                     </div>
                     <Divider title='CheckboxToggle' />
-                    <CheckboxToggle value={isToggled} onChange={setIsToggled} />
+                    <CheckboxToggle
+                        valueLabel='This is the thing I am accepting'
+                        value={isToggled}
+                        onChange={setIsToggled}
+                    />
                     <div>Value of CheckboxToggle:</div>
                     <div>{isToggled.toString()}</div>
                 </div>
