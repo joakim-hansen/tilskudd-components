@@ -8,6 +8,7 @@ import {
     Alert,
     Modal,
     Card,
+    Checkbox,
 } from '../Components';
 
 export {
@@ -20,4 +21,5 @@ export {
     Alert,
     Modal,
     Card,
+    Checkbox,
 };

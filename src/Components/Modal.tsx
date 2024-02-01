@@ -74,9 +74,9 @@ type ModalButtons = {
     secondary?: ModalButton;
 
     /**
-     * The alignment of the buttons within the modal. Can be either 'right' or 'left'.
+     * The alignment of the buttons within the modal. Can be either 'right' or 'left', defaults to 'right' if not given.
      */
-    alignment: 'right' | 'left';
+    alignment?: 'right' | 'left';
 };
 
 type ModalButton = {
@@ -95,41 +95,6 @@ type ModalButton = {
      */
     onClick?: () => void;
 };
-
-/* 
-    EXAMPLE USE:
-    function ModalExample(): ReactElement {
-        const [modalOpen, setmodalOpen] = useState<boolean>(false);
-        function submitFunction(): void {
-            alert('You have pressed the primary button succesfully');
-        }
-
-        return (
-            <div>
-                <Button onClick={() => setmodalOpen(true)}>Open the modal!</Button>
-                <Modal
-                    buttons={{
-            primary: {
-            label: 'Primary button',
-            variant: 'primary',
-            onClick: submitFunction,
-        },
-            secondary: {
-            label: 'Secondary',
-            variant: 'secondary,
-        },
-            alignment: 'left',
-        }}
-                    isModalOpen={modalOpen}
-                    title='The modal may have a title'
-                    onClose={() => setmodalOpen(false)}
-                >
-                    <div>This is the modal content (children)</div>
-                </Modal>
-            </div>
-        );
-    }
-*/
 
 function ExclamationIcon(props: IconProps) {
     return (
@@ -186,7 +151,7 @@ function Buttons(props: {
     const { primary, secondary, alignment } = buttons;
     return (
         <Box padding='0 24px 24px 24px'>
-            {alignment === 'right' && (
+            {(!alignment || alignment === 'right') && (
                 <Flex justify='end'>
                     {secondary && (
                         <Button

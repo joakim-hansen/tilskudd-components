@@ -8,6 +8,7 @@ import {
     Tabs,
     Radio,
     Card,
+    Checkbox,
 } from 'Components';
 import { styles } from 'Theme';
 import { useState } from 'react';
@@ -43,6 +44,18 @@ function App() {
         { value: 'first', label: 'Radio Option One' },
         { value: 'second', label: 'Radio Option Two' },
         { value: 'disabled', label: 'Disabled Radio Option', isDisabled: true },
+    ];
+
+    const [checkboxOption, setCheckboxOption] = useState<string[]>([]);
+
+    const checkboxOptions = [
+        { value: 'first', label: 'Checkbox Option One' },
+        { value: 'second', label: 'Checkbox Option Two' },
+        {
+            value: 'disabled',
+            label: 'Disabled Checkbox Option',
+            isDisabled: true,
+        },
     ];
 
     const inputFieldStyles = { width: '25rem' };
@@ -154,6 +167,24 @@ function App() {
                     <div>
                         Label of radio value:{' '}
                         {radioValueLabelDisplayer(radioOption)}
+                    </div>
+                    <Divider title='Checkbox' />
+                    <Checkbox
+                        options={checkboxOptions}
+                        value={checkboxOption}
+                        onChange={setCheckboxOption}
+                    />
+                    <div>Checkbox value: {checkboxOption}</div>
+                    <div>
+                        Label of Checkbox value(s):{' '}
+                        {checkboxOption.map((co) => {
+                            let found = checkboxOptions.find(
+                                (cbo) => cbo.value === co
+                            );
+                            if (found) {
+                                return found.label;
+                            }
+                        })}
                     </div>
                 </div>
             ),

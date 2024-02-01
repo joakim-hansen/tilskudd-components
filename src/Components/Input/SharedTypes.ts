@@ -89,9 +89,21 @@ interface TextInputProps extends InputComponentProps {
     characterLimit?: number;
 }
 
+/**
+ * Option for components with multiple possible choices.
+ */
 type MultiChoiceOption<T extends string | number> = {
+    /**
+     * The label of the option
+     */
     label: string;
+    /**
+     * The value of the option
+     */
     value: T;
+    /**
+     * Whether the option is disabled.
+     */
     isDisabled?: boolean;
 };
 
