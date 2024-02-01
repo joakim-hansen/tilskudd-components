@@ -173,9 +173,15 @@ function App() {
                     </div>
                     <Divider title='Checkbox' />
                     <Checkbox
+                        label='I am a checkbnox'
                         options={checkboxOptions}
                         value={checkboxOption}
                         onChange={setCheckboxOption}
+                        invalidText={
+                            checkboxOption.length === 0
+                                ? 'asdaASDASDSAasdhsrg'
+                                : undefined
+                        }
                     />
                     <div>Checkbox value: {checkboxOption}</div>
                     <div>
@@ -194,6 +200,7 @@ function App() {
                         valueLabel='This is the thing I am accepting'
                         value={isToggled}
                         onChange={setIsToggled}
+                        invalidText={isToggled ? undefined : 'invalid text'}
                     />
                     <div>Value of CheckboxToggle:</div>
                     <div>{isToggled.toString()}</div>
