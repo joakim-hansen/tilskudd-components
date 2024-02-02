@@ -36,6 +36,7 @@ import {
     Accordion,
     ComposedSpinner,
     OverlaySpinner,
+    Spinner,
 } from './Components';
 
 const overrides = {
@@ -74,6 +75,7 @@ const overrides = {
         Accordion,
         ComposedSpinner,
         OverlaySpinner,
+        Spinner,
     },
 };
 

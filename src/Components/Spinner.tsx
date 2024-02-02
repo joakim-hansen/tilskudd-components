@@ -31,7 +31,7 @@ function Spinner(props: {
                         </Heading>
                     )}
                     {text && <Text mb='0.5rem'>{text}</Text>}
-                    <ChakraSpinner size='lg' color='blue' />
+                    <ChakraSpinner />
                 </VStack>
             </Box>
         </Center>

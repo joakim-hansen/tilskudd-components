@@ -6,6 +6,12 @@ import {
     ModalBody,
     SystemStyleObject,
     useStyleConfig,
+    Center,
+    Heading,
+    Spinner as ChakraSpinner,
+    Text,
+    VStack,
+    Box,
 } from '@chakra-ui/react';
 import { Spinner } from './Spinner';
 
@@ -18,15 +24,7 @@ function OverlaySpinner(props: {
     spinnerVariant?: string;
     onClose?: Function;
 }) {
-    const {
-        isActive,
-        text,
-        spinnerStyles,
-        styles,
-        variant,
-        onClose,
-        spinnerVariant,
-    } = props;
+    const { isActive, text, styles, variant, onClose, spinnerVariant } = props;
 
     const overlaySpinnerStyles = useStyleConfig('OverlaySpinner', {
         variant: variant,
@@ -47,11 +45,16 @@ function OverlaySpinner(props: {
                 }
             >
                 <ModalBody>
-                    <Spinner
-                        styles={spinnerStyles}
-                        header={text}
-                        variant={spinnerVariant}
-                    />
+                    <Center>
+                        <VStack>
+                            {text && (
+                                <Heading size='md' mb='0.5rem'>
+                                    {text}
+                                </Heading>
+                            )}
+                            <ChakraSpinner variant={spinnerVariant} />
+                        </VStack>
+                    </Center>
                 </ModalBody>
             </ModalContent>
         </ChakraModal>
