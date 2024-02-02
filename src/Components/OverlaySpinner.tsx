@@ -1,6 +1,5 @@
+import React from 'react';
 import {
-    Heading,
-    Flex,
     Modal as ChakraModal,
     ModalOverlay,
     ModalContent,
