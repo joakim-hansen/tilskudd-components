@@ -10,6 +10,8 @@ import {
     Card,
     Checkbox,
     CheckboxToggle,
+    Spinner,
+    OverlaySpinner,
 } from '../Components';
 
 export {
@@ -24,4 +26,6 @@ export {
     Card,
     Checkbox,
     CheckboxToggle,
+    Spinner,
+    OverlaySpinner,
 };

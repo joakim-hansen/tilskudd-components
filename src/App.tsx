@@ -10,6 +10,8 @@ import {
     Card,
     Checkbox,
     CheckboxToggle,
+    Spinner,
+    OverlaySpinner,
 } from 'Components';
 import { styles } from 'Theme';
 import { useState } from 'react';
@@ -40,6 +42,8 @@ function App() {
     const [numberValue, setNumberValue] = useState();
 
     const [radioOption, setRadioOption] = useState<string>();
+
+    const [isOverlaySpinnerActive, setIsOverlaySpinnerActive] = useState(false);
 
     const radioOptions = [
         { value: 'first', label: 'Radio Option One' },
@@ -153,6 +157,16 @@ function App() {
 
                     <Divider title='Card' />
                     <Card title='Card title' />
+                    <Divider title='Spinner' />
+                    <Spinner header='Spinner' text='I sure am spinning' />
+                    <Divider title='OverlaySpinner' />
+                    <button onClick={() => setIsOverlaySpinnerActive(true)}>
+                        Active Overlay
+                    </button>
+                    <OverlaySpinner
+                        isActive={isOverlaySpinnerActive}
+                        text='Laster ned alle søknader (Excel)'
+                    />
                 </div>
             ),
         },

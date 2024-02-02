@@ -34,6 +34,8 @@ import {
     THrow,
     TFrow,
     Accordion,
+    ComposedSpinner,
+    OverlaySpinner,
 } from './Components';
 
 const overrides = {
@@ -70,6 +72,8 @@ const overrides = {
         THrow,
         TFrow,
         Accordion,
+        ComposedSpinner,
+        OverlaySpinner,
     },
 };
 

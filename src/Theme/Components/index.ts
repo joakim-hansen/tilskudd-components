@@ -22,3 +22,5 @@ export * from './Select';
 export * from './ProgressStyles';
 export * from './Accordion';
 export * from './Card';
+export * from './ComposedSpinner';
+export * from './OverlaySpinner';
