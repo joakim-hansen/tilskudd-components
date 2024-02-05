@@ -91,6 +91,7 @@ export function Radio<T extends string | number>(
                             isInvalid={!!invalidText || isInvalid}
                             value={option.value}
                             id={`${label}-radio-${option.value}`}
+                            key={`${label}-radio-${option.value}`}
                             isDisabled={option.isDisabled}
                         >
                             {option.label}
